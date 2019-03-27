@@ -1,5 +1,5 @@
 var svgWidth = 960;
-var svgHeight = 500;
+var svgHeight = 700;
 
 var margin = {
   top: 20,
@@ -63,24 +63,25 @@ d3.csv("filtered_data.csv")
     .append("circle")
     .attr("cx", d => xLinearScale(d.age))
     .attr("cy", d => yLinearScale(d.income))
-    .attr("r", "15")
-    .attr("fill", "grey")
-    .attr("opacity", ".5");
+    .attr("r", "20")
+    .attr("fill", "lightblue")
+    .attr("opacity", ".5")
+    .style("stroke", "black");
 
     // Step 5.5: text lalbels
     // ==============================
     chartGroup.append("text")
         .style("text-anchor", "middle")
-        .style("font-size", "12px")
+        .style("font-size", "14px")
         .selectAll("tspan")
         .data(stateData)
         .enter()
         .append("tspan")
             .attr("x", function(data) {
-                return xLinearScale(data.age - 0);
+                return xLinearScale(data.age);
             })
             .attr("y", function(data) {
-                return yLinearScale(data.income - 0.2);
+                return yLinearScale(data.income-300);
             })
             .text(function(data) {
                 return data.state
@@ -116,7 +117,7 @@ d3.csv("filtered_data.csv")
       .attr("x", 0 - (height / 2))
       .attr("dy", "1em")
       .attr("class", "axisText")
-      .text("Average Income");
+      .text("Average Income per year (USD)");
 
     chartGroup.append("text")
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
