@@ -67,6 +67,25 @@ d3.csv("filtered_data.csv")
     .attr("fill", "grey")
     .attr("opacity", ".5");
 
+    // Step 5.5: text lalbels
+    // ==============================
+    chartGroup.append("text")
+        .style("text-anchor", "middle")
+        .style("font-size", "12px")
+        .selectAll("tspan")
+        .data(stateData)
+        .enter()
+        .append("tspan")
+            .attr("x", function(data) {
+                return xLinearScale(data.age - 0);
+            })
+            .attr("y", function(data) {
+                return yLinearScale(data.income - 0.2);
+            })
+            .text(function(data) {
+                return data.state
+            });
+
     // Step 6: Initialize tool tip
     // ==============================
     var toolTip = d3.tip()
